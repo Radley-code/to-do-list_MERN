@@ -24,13 +24,13 @@ A simple to-do list application built using the MERN stack. This project perform
 
 ## Installation
 
-1. Clone the Repository:
+-1. Clone the Repository:
      git clone https://github.com/Radley-code/to-do-list_MERN.git
-   2. Navigate to the Project Directory:
+   - 2. Navigate to the Project Directory:
      cd to-do-list_MERN
-   3. Install Dependencies:
+   -3. Install Dependencies:
      npm install
-   4. Start the Development Server:
+   -4. Start the Development Server:
      npm start
    
 ## License
