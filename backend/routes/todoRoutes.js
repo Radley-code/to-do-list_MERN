@@ -34,27 +34,42 @@ router.post('/', async (req, res) => {
 //@desc Update a todo
 //@route PUT /api/todos/:id
 
-router.put('/:_id', async (req, res) => {
-    try {
-        const todo = await Todo.findById(req.params._id);
-        if (!todo) {
-            return res.status(404).json({ message: 'Todo not found' });
-        }
-        todo.title = req.body.title || todo.title;
-        todo.completed = req.body.completed ?? todo.completed;
+// router.put('/:_id', async (req, res) => {
+//     try {
+//         const todo = await Todo.findById(req.params._id);
+//         if (!todo) {
+//             return res.status(404).json({ message: 'Todo not found' });
+//         }
+//         todo.title = req.body.title || todo.title;
+//         todo.completed = req.body.completed ?? todo.completed;
 
-        const updated = await todo.save();
-        res.json(updated);
-    } catch (err) {
-        res.status(500).json({ message: 'Server error', error: err.message });
-    }
-}); 
+//         const updated = await todo.save();
+//         res.json(updated);
+//     } catch (err) {
+//         res.status(500).json({ message: 'Server error', error: err.message });
+//     }
+// }); 
+
+
+router.put('/:_id', async(req,res)=>{
+  try{
+      const updateData = await Todo.findByIdAndUpdate(req.params._id, req.body, {new: true});
+    if(!updateData){
+        res.status(404).json({success: false, message:'data not found'});
+
+    };
+
+    res.status(200).json(updateData);
+  }catch(err){
+    res.status(500).json({success:false, message: `unable to update data ${err}`});
+  }
+})
 
 //@desc Delete a todo
 //@route DELETE /api/todos/:id
-router.delete('/:id', async (req, res) => {
+router.delete('/:_id', async (req, res) => {
     try {
-        const todo = await Todo.findByIdAndDelete(req.params.id);
+        const todo = await Todo.findByIdAndDelete(req.params._id);
         if (!todo) {
             return res.status(404).json({ message: 'Todo not found' });
         }
