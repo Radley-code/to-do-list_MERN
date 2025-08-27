@@ -43,4 +43,3 @@ Feel free to contribute to this project by submitting issues or pull requests. C
 
 ---
 
-Let me know if you'd like additional sections or formatting changes for the README!
